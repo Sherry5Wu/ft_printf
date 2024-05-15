@@ -1,8 +1,9 @@
 #include "ft_printf.h"
 
-static int fmt_conversion(const char fmt, va_list arg)
+static int fmt_conversion(const char fmt)
 {
 	int char_printed;
+	va_list arg;
 
 	count = 0;
 	if (fmt == 'c')
@@ -33,13 +34,16 @@ int ft_printf(const char *fmt, ...)
 		return (0);
 	i = 0;
 	count = 0;
-	while (fmt[i] != '%' && fmt[i])
+	while (fmt[i])
 	{
-		count += put_c(&fmt[i]);
-		i++;
+		while (fmt[i] != '%' && fmt[i])
+		{
+			count += put_c(fmt[i]);
+			i++;
+		}
+		if (fmt[i] == '%')
+			count += fmt_conversion(fmt[i + 1]);
 	}
-	if (fmt[i] == '%')
-		count += fmt_conversion(fmt + i + 1);
 	va_end(arg);
 	return (count);
 }
