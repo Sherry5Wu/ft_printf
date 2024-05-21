@@ -11,7 +11,7 @@ static int fmt_conversion(const char fmt)
 	if (fmt == 's')
 		char_printed = put_str(va_arg(arg, char *));
 	if (fmt == 'p')
-		char_printed = put_adrs(va_arg(arg, uintptr_t));
+		char_printed = put_addrs(va_arg(arg, uintptr_t));
 	if (fmt == 'd' || fmt == 'i')
 		char_printed = put_nb(va_arg(arg, int));
 	if (fmt == 'u')
