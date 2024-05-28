@@ -6,11 +6,9 @@
 # include <stdint.h> // for pointer type uintptr_t
 
 int ft_printf(const char *fmt, ...);
-int print_c(char c);
+int print_c(int c);
 int print_str(char *str);
-int print_addrs(uintptr_t addr);
-int print_nb(int nb);
-int print_unb(unsigned int unb);
-int	print_hexa(unsigned int nb, char fmt);
+int print_addrs(uintptr_t addr, int tag, int char_pt);
+int print_num(long nb, int base, int sign, int char_pt);
 
 #endif
