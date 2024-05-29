@@ -14,7 +14,6 @@
 
 // For the wrtie function, on failure, 'write' returns '-1' and sets 'errno' to
 // indicate the error
-#include <stdio.h>
 int print_c(int c)
 {
 	if ((write(1, &c, 1) != 1))
