@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-#include <stdio.h>
 static int specifier(const char fmt, va_list arg)
 {
 	int char_pt;
@@ -22,18 +21,17 @@ static int specifier(const char fmt, va_list arg)
 	else if (fmt == 's')
 		char_pt = print_str(va_arg(arg, char *));
 	else if (fmt == 'p')
-		char_pt = print_addrs(va_arg(arg, uintptr_t), 0, 0);
+		char_pt = print_addrs(va_arg(arg, uintptr_t), 0);
 	else if (fmt == 'd' || fmt == 'i')
-		char_pt = print_num((long)va_arg(arg, int), 10, 0, 0);
+		char_pt = print_num((long)va_arg(arg, int), 10, 0);
 	else if (fmt == 'u')
-		char_pt = print_num((long)va_arg(arg, unsigned int), 10, 0, 0);
+		char_pt = print_num((long)va_arg(arg, unsigned int), 10, 0);
 	else if (fmt == 'x')
-		char_pt = print_num((long)va_arg(arg, unsigned int), 16, 0, 0);
+		char_pt = print_num((long)va_arg(arg, unsigned int), 16, 0);
 	else if (fmt == 'X')
-		char_pt = print_num((long)va_arg(arg, unsigned int), 16, 1, 0);
+		char_pt = print_num((long)va_arg(arg, unsigned int), 16, 1);
 	else 
 		char_pt = print_c(fmt);
-//	printf("specifier_char_pt=%d\n", char_pt);
 	return (char_pt);
 }
 
@@ -59,12 +57,10 @@ static int format(const char *fmt, va_list arg)
 			re_value = specifier(fmt[++i], arg);
 			if (re_value == -1)
 				return (-1);
-//			printf("format_re_value=%d\n", re_value);
 			char_pt += re_value ;
 			i++;
 		}
 	}
-//	printf("format_char_pt=%d\n", char_pt);
 	return (char_pt);
 }
 
