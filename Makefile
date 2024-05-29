@@ -1,25 +1,26 @@
-SRCS   := ${wildcard *.c}
-HEADER   = ft_printf.h
+SCRS = ft_output.c ft_printf.c
+OBJS = ${SCRS:.c=.o}
 
-AR     = ar rc
-RM     = rm -f
-LIB    = ranlib
-CC     = cc
-CFLAGS = -Wall -Wextra -Werror
-
-NAME = test
+CC = cc
+FLAGS = -Wall -Wextra -Werror
+AR = ar rc
+RM = rm -f
+NAME = libftprintf.a
 
 all: ${NAME}
 
-${NAME}: ${HEADER} ${SRCS}
-	${CC} ${CFLAGS} ${SRCS} -I $< -o $@
+${NAME}: ${OBJS}
+	${AR} ${NAME} $^
+
+%.o: %.c
+	${CC} ${FLAGS} -c $< -o $@
 
 clean:
 	${RM} ${OBJS}
 
-fclean:
+fclean: clean
 	${RM} ${NAME}
 
-re:	fclean all
+re: fclean all
 
-.PHONY:		all fclean re
+.PHONY: all clean fclean re
